@@ -1,7 +1,7 @@
 array = {"one", "two", "three"}
 function start()
-  for i = 0,#array,1
+  for index, value in ipairs(array) 
   do
-      print(array[i])
+    print("Index: " .. index .. ", Value: " .. value)
   end
 end
