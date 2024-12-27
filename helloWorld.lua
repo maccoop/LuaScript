@@ -10,26 +10,9 @@ function start()
 	next = 0
 	local obj = CS.UnityEngine.GameObject("Create Obj")
 	local render = obj:AddComponent(typeof(CS.UnityEngine.SpriteRenderer))
-	LoadAndApplyImage(obj,"https://picsum.photos/200/300")
-end
+	local loader = obj:AddComponent(typeof(CS.ImageLoader))
+	loader:LoadImage("https://picsum.photos/200/300", render)
 
-function LoadAndApplyImage(gameObject, url)
-	gameObject:StartCoroutine(function()
-        local www = CS.UnityEngine.WWW(url)
-        while not www.isDone do
-            CS.UnityEngine.Yield(nil)
-        end
-
-        if www.error ~= nil then
-            print("Error downloading image: " .. www.error)
-        else
-            local texture = www.texture
-            local renderer = gameObject:GetComponent(typeof(CS.UnityEngine.Renderer))
-            if renderer then
-                renderer.material.mainTexture = texture
-            end
-        end
-    end)
 end
 
 function update()
