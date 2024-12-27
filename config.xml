@@ -1,6 +1,6 @@
 <xml>
 	<main>
-		<hello url = "https://github.com/maccoop/LuaScript/blob/main/helloWorld.lua"/>
+		<hello url = "https://raw.githubusercontent.com/maccoop/LuaScript/refs/heads/main/helloWorld.lua"/>
 	</main>
 	<dependencies>
 	</dependencies>
