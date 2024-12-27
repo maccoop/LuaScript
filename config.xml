@@ -1,6 +1,6 @@
 <xml>
 	<main>
-		<hello url = "C:/Users/Admin/Project/LuaExt/Assets/Resources/test.lua"/>
+		<hello url = "C:/Users/Admin/Project/LuaExt/Assets/StreamingAssets/test.lua"/>
 		<loop url = "https://raw.githubusercontent.com/maccoop/LuaScript/refs/heads/main/forLoopEx.lua"/>
 	</main>
 	<dependencies>
