@@ -1,6 +1,6 @@
 <xml>
 	<main>
-		<hello url = "C:\Users\Admin\Project\LuaExt\Assets\StreamingAssets\helloWorld.lua"/>
+		<hello url = "https://github.com/maccoop/LuaScript/blob/main/helloWorld.lua"/>
 	</main>
 	<dependencies>
 	</dependencies>
