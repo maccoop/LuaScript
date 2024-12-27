@@ -14,7 +14,7 @@ function start()
 end
 
 function LoadAndApplyImage(gameObject, url)
-    CS.UnityEngine.Coroutine.StartCoroutine(function()
+	gameObject:StartCoroutine(function()
         local www = CS.UnityEngine.WWW(url)
         while not www.isDone do
             CS.UnityEngine.Yield(nil)
