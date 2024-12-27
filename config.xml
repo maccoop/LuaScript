@@ -1,0 +1,7 @@
+<xml>
+	<main>
+		<hello url = "C:\Users\Admin\Project\LuaExt\Assets\StreamingAssets\helloWorld.lua"/>
+	</main>
+	<dependencies>
+	</dependencies>
+</xml>
