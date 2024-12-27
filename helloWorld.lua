@@ -16,5 +16,5 @@ function start()
 end
 
 function update()
-	obj:transform:posiion = CS.UnityEngine.Input.mousePosition
+	obj.transform.posiion = CS.UnityEngine.Input.mousePosition
 end
