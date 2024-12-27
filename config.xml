@@ -1,6 +1,7 @@
 <xml>
 	<main>
 		<hello url = "https://raw.githubusercontent.com/maccoop/LuaScript/refs/heads/main/helloWorld.lua"/>
+		<hello url = "https://raw.githubusercontent.com/maccoop/LuaScript/refs/heads/main/forLoopEx.lua"/>
 	</main>
 	<dependencies>
 	</dependencies>
