@@ -1,5 +1,3 @@
-package.path = package.path .. ";https://raw.githubusercontent.com/maccoop/LuaScript/refs/heads/main/flappy.lua"
-
 _sprites = {}
 _loader = null
 _texturePath = "https://raw.githubusercontent.com/maccoop/LuaScript/refs/heads/main/textures/"
