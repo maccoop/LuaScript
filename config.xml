@@ -1,7 +1,7 @@
 <xml>
 	<main>
 		<hello path = "C:/Users/Admin/Project/BirdCode/StreamingAssets/flappy.lua"/>
-		<loop path = "C:/Users/Admin/Project/BirdCode/StreamingAssets/forLoop.lua"/>
+		<loop path = "C:/Users/Admin/Project/BirdCode/StreamingAssets/UITest.lua"/>
 	</main>
 	<service>
 		<userservice path = "C:/Users/Admin/Project/BirdCode/StreamingAssets/userservice.lua"/>
