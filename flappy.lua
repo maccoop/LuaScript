@@ -12,7 +12,7 @@ _timeFlying = 1/8
 _g = 1
 
 function start()
-	CS.ServiceLocator.Instance:GetService("userservice"):CallMethod("SaveData",("99878 9 78as"))
+	--CS.ServiceLocator.Instance:GetService("userservice"):CallMethod("SaveData",("99878 9 78as"))
 	self.transform.localScale = CS.UnityEngine.Vector3.one * 2
 	_birdRender = self:AddComponent(typeof(CS.UnityEngine.SpriteRenderer))
 	_loader = self:AddComponent(typeof(CS.ImageLoader))
