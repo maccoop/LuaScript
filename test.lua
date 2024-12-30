@@ -16,5 +16,5 @@ function start()
 end
 
 function update()
-	obj.transform.posiion = CS.UnityEngine.Input.mousePosition
+	obj.transform.position = CS.UnityEngine.Camera.main:ScreenToWorldPoint(CS.UnityEngine.Input.mousePosition) + CS.UnityEngine.Vector3.forward * 10
 end
