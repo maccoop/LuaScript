@@ -1,8 +1,8 @@
-package.path = package.path .. ";C:/Users/Admin/Project/BirdCode/StreamingAssets/flappy.lua"
+package.path = package.path .. ";https://raw.githubusercontent.com/maccoop/LuaScript/refs/heads/main/flappy.lua"
 
 _sprites = {}
 _loader = null
-_texturePath = "C:/Users/Admin/Project/BirdCode/StreamingAssets/textures/"
+_texturePath = "https://raw.githubusercontent.com/maccoop/LuaScript/refs/heads/main/textures/"
 _textures = {"bird_0.png","bird_1.png", "bird_2.png"}
 _birdRender = null
 _nextRender = 0
