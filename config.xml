@@ -4,6 +4,6 @@
 		<loop path = "C:/Users/Admin/Project/BirdCode/StreamingAssets/forLoop.lua"/>
 	</main>
 	<service>
-		<userservice path = "C:/Users/Admin/Project/BirdCode/StreamingAssets/userservice.lua"/>s
+		<userservice path = "C:/Users/Admin/Project/BirdCode/StreamingAssets/userservice.lua"/>
 	</service>
 </xml>
