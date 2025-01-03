@@ -1,4 +1,4 @@
-local main = CS.Main
+local main = CS.main
 xlua.hotfix(main, "Update", function(self)
     local first = CS.DateTime.Now
     for i = 1,10000
