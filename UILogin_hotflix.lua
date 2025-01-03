@@ -1,6 +1,4 @@
-ui_login_game = CS.FogTeam.KiemThe.UI.LoginGame.UILoginGame
-
-xlua.hotfix(ui_login_game, "InitPrefabs", function(self)
+xlua.hotfix("FogTeam.KiemThe.UI.LoginGame.UILoginGame", "InitPrefabs", function(self)
     print("hotfix uiLoginGame");
     self.gameObject:GetComponentInChildren(typeof(CS.FogTeam.KiemThe.Utilities.UnityUI.UITabPanel)).enabled = true
     self.Button_Login.onClick:AddListener( function()
