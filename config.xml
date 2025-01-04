@@ -2,8 +2,6 @@
 	<hotfix>
 		<Super path = "C:\Users\Admin\Project\LuaScript\Super_hotflix.lua"/>
 		<UILogin path = "C:\Users\Admin\Project\LuaScript\UILogin_hotflix.lua"/>
+		<Character path = "C:\Users\Admin\Project\LuaScript\CharacterFix.lua"/>
 	</hotfix>
-	<main>
-		<flappy path = "C:\Users\Admin\Project\LuaScript\flappy.lua"/>
-	</main>
 </xml>

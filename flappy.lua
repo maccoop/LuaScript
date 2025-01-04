@@ -1,21 +1,26 @@
-_sprites = {}
-_loader = null
-_texturePath = "https://raw.githubusercontent.com/maccoop/LuaScript/refs/heads/main/textures/"
-_textures = {"bird_0.png","bird_1.png", "bird_2.png"}
-_birdRender = null
-_nextRender = 0
-_delayRender = 1/8
-_indexSprite = 0
-_isFlying = false
-_timeFlyEnd = 0
-_timeFlying = 1/8
+local _sprites = {}
+local _loader = null
+local _texturePath = "C:/Users/Admin/Project/LuaScript/textures/"
+local _textures = {"bird_0.png","bird_1.png", "bird_2.png"}
+local _coinText =  {"coin_0.png","coin_1.png", "coin_2.png"}
+local _birdRender = null
+local _nextRender = 0
+local _delayRender = 1/8
+local _indexSprite = 0
+local _isFlying = false
+local _timeFlyEnd = 0
+local _timeFlying = 1/8
 _g = 1
 
 function start()
-	CS.ServiceLocator.Instance:GetService("userservice"):CallMethod("SaveData",("99878 9 78as"))
 	self.transform.localScale = CS.UnityEngine.Vector3.one * 2
-	_birdRender = self:AddComponent(typeof(CS.UnityEngine.SpriteRenderer))
-	_loader = self:AddComponent(typeof(CS.ImageLoader))
+	_birdRender = self.gameObject:AddComponent(typeof(CS.UnityEngine.SpriteRenderer))
+	_loader = self.gameObject:AddComponent(typeof(CS.ImageLoader))
+	local collider = self.gameObject:AddComponent(typeof(CS.UnityEngine.CircleCollider2D))
+	collider.isTrigger = true
+	collider.radius = 0.17
+	local rigid = self.gameObject:AddComponent(typeof(CS.UnityEngine.Rigidbody2D))
+	rigid.bodyType = CS.UnityEngine.RigidbodyType2D.Kinematic
 	for i = 1,#_textures
 	do
 		print("Load from: " .. _texturePath .. _textures[i])
@@ -44,7 +49,12 @@ function update()
 		Control()
 		SpriteSheetForBird()
 		Drop()
+		GoldFunc()
 	end
+end
+
+function GoldFunc()
+	
 end
 
 function SpriteSheetForBird()
@@ -85,4 +95,8 @@ function Fly()
 	_isFlying = true
 	_timeFlyEnd = CS.UnityEngine.Time.time + _timeFlying
 	self.transform.rotation = CS.UnityEngine.Quaternion.Euler(0, 0, 15) 
+end
+
+function onTriggerEnter2D(trigger)
+    trigger.gameObject:SetActive(false)
 end

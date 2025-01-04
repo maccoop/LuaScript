@@ -1,5 +1,3 @@
-selfScript = nil
-
 LoginSuccess = {}
 -- tab login
 Input_LoginUserName = nil
@@ -17,7 +15,7 @@ _flagSDKLoginSuccess = false
 
 function LoginSuccessAdd()
     LoginSuccess[#LoginSuccess+1] = function()
-        selfScript:CallAction("LoginSuccess")
+        self:CallAction("LoginSuccess")
     end
 end
 
@@ -36,7 +34,7 @@ function RegisterCallBackAdd()
     end
 
     RegisterCallBack[#RegisterCallBack+1] = function()
-        selfScript:CallAction("RegisterCallBack")
+        self:CallAction("RegisterCallBack")
     end
     RegisterCallBack[#RegisterCallBack+1] = function ()
         CS.FogTeam.GameFramework.Super.ShowMessageBox("Đăng ký thành công", "Đăng ký tài khoản thành công.", true)
@@ -72,7 +70,6 @@ end
 function start()
     --
     -- Awake
-    selfScript = self:GetComponent(typeof(CS.LuaScript));
     LoginSuccessAdd()
     -- login
     Input_LoginUserName =   GetChild(self,"1/1/0/0"):GetComponent(typeof(CS.TMPro.TMP_InputField))
@@ -86,7 +83,7 @@ function start()
     Input_RegisterRepassword =  GetChild(self,"1/1/1/2"):GetComponent(typeof(CS.TMPro.TMP_InputField))
     Button_Register =           GetChild(self,"1/1/1/3"):GetComponent(typeof(CS.UnityEngine.UI.Button))
 
-    accountInfoManager = self:AddComponent(typeof(CS.FogTeam.KiemThe.Loader.LoadSavedAccountInfo))
+    accountInfoManager = self.gameObject:AddComponent(typeof(CS.FogTeam.KiemThe.Loader.LoadSavedAccountInfo))
     accountInfoManager.Done = function(account,password)
         Input_LoginUserName.text = account
         Input_LoginPassword.text = password
@@ -100,7 +97,7 @@ function start()
     --
     -- Start
     _flagSDKLoginSuccess = false
-    if(selfScript:is_Android() == true and selfScript:is_Editor() == false)
+    if(self:is_Android() == true and self:is_Editor() == false)
     then
         CS.UnityEngine.GameObject.Find("Tab Header"):SetActive(false)
         CS.SDK.SDKUtils.Instance:ShowLogin(function(username, token)
@@ -139,15 +136,16 @@ function loginSuccessOnMainThread()
 end
 
 function InitPrefabs()
-    self:GetComponentInChildren(typeof(CS.FogTeam.KiemThe.Utilities.UnityUI.UITabPanel)).enabled = true
+    self.gameObject:GetComponentInChildren(typeof(CS.FogTeam.KiemThe.Utilities.UnityUI.UITabPanel)).enabled = true
     Button_Login.onClick:AddListener(ButtonLogin_Click)
     Button_Register.onClick:AddListener(ButtonRegister_Click)
 end
 
 function ButtonLogin_Click()
+    CS.TimeCount.Ping();
     local account = Input_LoginUserName.text
     local password = Input_LoginPassword.text;
-    if(selfScript:is_Editor() == true)
+    if(self:is_Editor() == true)
     then
         local pathLoginXML = CS.FogTeam.GameEngine.Logic.Global.WebPath("login.xml", false)
         if(pathLoginXML ~= nil)
@@ -183,7 +181,7 @@ function ButtonLogin_Click()
     CS.FogTeam.GameEngine.Network.GameInstance.Game.CurrentSession.LastLoginTime = "" .. CS.System.DateTime.Now.Ticks;
     
     -- UnityEditor
-    if(selfScript:is_Editor() == true)
+    if(self:is_Editor() == true)
     then
         local unixEpoch = CS.System.DateTime(1970, 1, 1, 0, 0, 0, CS.System.DateTimeKind.Utc);
         local now = CS.System.DateTime.UtcNow:Add(CS.System.TimeSpan.FromMinutes(60))
@@ -208,7 +206,7 @@ function ButtonLogin_Click()
     if(LoginSuccess ~= nil) then
         LoginSuccessInvoke()
     end
-
+    CS.TimeCount.Pong("Button Login Click HotFix");
 end
 
 function ButtonRegister_Click()
