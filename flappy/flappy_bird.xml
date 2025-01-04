@@ -1,0 +1,6 @@
+<xml>
+	<main>
+		<flappy path = "C:\Users\Admin\Project\LuaScript\flappy\flappy.lua"/>
+		<coin path = "C:\Users\Admin\Project\LuaScript\flappy\coin.lua" />
+	</main>
+</xml>

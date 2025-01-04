@@ -1,8 +1,8 @@
 local _sprites = {}
 local _loader = null
-local _texturePath = "C:/Users/Admin/Project/LuaScript/textures/"
+local _path = "C:/Users/Admin/Project/LuaScript/flappy/"
+local _texturePath = _path .. "textures/"
 local _textures = {"bird_0.png","bird_1.png", "bird_2.png"}
-local _coinText =  {"coin_0.png","coin_1.png", "coin_2.png"}
 local _birdRender = null
 local _nextRender = 0
 local _delayRender = 1/8
@@ -10,12 +10,14 @@ local _indexSprite = 0
 local _isFlying = false
 local _timeFlyEnd = 0
 local _timeFlying = 1/8
-_g = 1
+local _g = 1
+local _coin = 0
+local _die = false
+
 
 function start()
 	self.transform.localScale = CS.UnityEngine.Vector3.one * 2
 	_birdRender = self.gameObject:AddComponent(typeof(CS.UnityEngine.SpriteRenderer))
-	_loader = self.gameObject:AddComponent(typeof(CS.ImageLoader))
 	local collider = self.gameObject:AddComponent(typeof(CS.UnityEngine.CircleCollider2D))
 	collider.isTrigger = true
 	collider.radius = 0.17
@@ -24,7 +26,7 @@ function start()
 	for i = 1,#_textures
 	do
 		print("Load from: " .. _texturePath .. _textures[i])
-		_loader:LoadImageCallback(
+		CS.ImageLoader.LoadImageCallback(
 			_texturePath .. _textures[i], 
 			function(texture)
 				_sprites[i] = CreateSprite(texture, 0, 0, texture.width, texture.height, 0.5, 0.5)
@@ -49,12 +51,7 @@ function update()
 		Control()
 		SpriteSheetForBird()
 		Drop()
-		GoldFunc()
 	end
-end
-
-function GoldFunc()
-	
 end
 
 function SpriteSheetForBird()
@@ -86,6 +83,14 @@ function Drop()
 end
 
 function Control()
+	if(_die == true)
+	then
+		if( CS.UnityEngine.Input.GetKeyDown(CS.UnityEngine.KeyCode.R)) then
+			_die = false
+			_coin = 0
+		end
+		return
+	end
 	if(_isFlying == false and CS.UnityEngine.Input.GetKeyDown(CS.UnityEngine.KeyCode.Space)) then
 		Fly();
 	end
@@ -98,5 +103,20 @@ function Fly()
 end
 
 function onTriggerEnter2D(trigger)
-    trigger.gameObject:SetActive(false)
+	if(trigger == nil)
+	then
+		print("trigger is null!")
+		return
+	end
+    trigger.gameObject:GetComponent(typeof(CS.LuaScript)):CallLuaFunc("OnTrigger", self)
+end
+
+function Score()
+	_coin = _coin + 1
+	print("Current coin: " .. _coin)
+end
+
+function Die()
+	_die = true
+	print("Die with coin: " .. _coin)
 end

@@ -1,0 +1,10 @@
+<xml>
+	<hotfix>
+		<Super path = "C:\Users\Admin\Project\LuaScript\KV1\hotfix\Super_hotflix.lua"/>
+		<UILogin path = "C:\Users\Admin\Project\LuaScript\KV1\hotfix\UILogin_hotflix.lua"/>
+		<Character path = "C:\Users\Admin\Project\LuaScript\KV1\hotfix\CharacterFix.lua"/>
+	</hotfix>
+	<service>
+		<user path = "C:\Users\Admin\Project\LuaScript\KV1\services\userservice.lua"/>
+	</service>
+</xml>

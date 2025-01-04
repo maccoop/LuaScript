@@ -3,7 +3,7 @@ xlua.hotfix("FogTeam.GameFramework.Logic.Super", "ShowGameLogin", function(self)
     CS.FogTeam.GameFramework.Logic.Super.LoadLoginScene()
     local obj = CS.FogTeam.KiemThe.UI.CanvasManager.Instance:LoadUIPrefab("LoginGame/UILoginGame 1")
     local loginGame = obj:GetComponent(typeof(CS.LuaScript))
-    loginGame:InitLua("C:/Users/Admin/Project/LuaScript/login.lua")
+    loginGame:InitLua("C:/Users/Admin/Project/LuaScript/KV1/login.lua")
     CS.FogTeam.KiemThe.UI.CanvasManager.Instance:AddUI(loginGame);
     loginGame:Register("LoginSuccess", function()
         print("login call")
