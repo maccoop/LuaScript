@@ -14,7 +14,6 @@ local _g = 1
 local _coin = 0
 local _die = false
 
-
 function start()
 	self.transform.localScale = CS.UnityEngine.Vector3.one * 2
 	_birdRender = self.gameObject:AddComponent(typeof(CS.UnityEngine.SpriteRenderer))
@@ -25,25 +24,12 @@ function start()
 	rigid.bodyType = CS.UnityEngine.RigidbodyType2D.Kinematic
 	for i = 1,#_textures
 	do
-		print("Load from: " .. _texturePath .. _textures[i])
 		CS.ImageLoader.LoadImageCallback(
 			_texturePath .. _textures[i], 
 			function(texture)
 				_sprites[i] = CreateSprite(texture, 0, 0, texture.width, texture.height, 0.5, 0.5)
 			end)
 	end
-end
-
-function CreateSprite(texture, x, y, width, height, pivotX, pivotY)
-    if texture == nil then
-        print("Texture is nil")
-        return nil
-    end
-
-    local rect = CS.UnityEngine.Rect(x, y, width, height)
-    local pivot = CS.UnityEngine.Vector2(pivotX or 0.5, pivotY or 0.5)
-    local sprite = CS.UnityEngine.Sprite.Create(texture, rect, pivot)
-    return sprite
 end
 
 function update()
@@ -55,20 +41,20 @@ function update()
 end
 
 function SpriteSheetForBird()
-	if(CS.UnityEngine.Time.time > _nextRender) then
+	if(Time.time > _nextRender) then
 		_indexSprite = _indexSprite + 1
 		if(_indexSprite > #_sprites) then
 			_indexSprite = 1
 		end
 		_birdRender.sprite = _sprites[_indexSprite]
-		_nextRender = CS.UnityEngine.Time.time + _delayRender
+		_nextRender = Time.time + _delayRender
 	end
 end
 
 function Drop()
 	if(_isFlying == true) then
-		self.transform.position = self.transform.position + CS.UnityEngine.Vector3.up * CS.UnityEngine.Time.deltaTime * 5
-		if(CS.UnityEngine.Time.time > _timeFlyEnd) then
+		self.transform.position = self.transform.position + Vector3.up * Time.deltaTime * 5
+		if(Time.time > _timeFlyEnd) then
 			_isFlying = false;
 		end
 		_g = 1
@@ -76,22 +62,22 @@ function Drop()
 		if(self.transform.position.y < -5) then
 			return
 		end
-		self.transform.position = self.transform.position + CS.UnityEngine.Vector3.down * CS.UnityEngine.Time.deltaTime * _g
+		self.transform.position = self.transform.position + Vector3.down * Time.deltaTime * _g
 		self.transform.rotation = CS.UnityEngine.Quaternion.Euler(0, 0, 10 -_g*5) 
-		_g = _g + _g/50 + CS.UnityEngine.Time.deltaTime
+		_g = _g + _g/50 + Time.deltaTime
 	end
 end
 
 function Control()
 	if(_die == true)
 	then
-		if( CS.UnityEngine.Input.GetKeyDown(CS.UnityEngine.KeyCode.R)) then
+		if( Input.GetKeyDown(CS.UnityEngine.KeyCode.R)) then
 			_die = false
 			_coin = 0
 		end
 		return
 	end
-	if(_isFlying == false and CS.UnityEngine.Input.GetKeyDown(CS.UnityEngine.KeyCode.Space)) then
+	if(_isFlying == false and Input.GetKeyDown(CS.UnityEngine.KeyCode.Space)) then
 		Fly();
 	end
 end

@@ -12,6 +12,7 @@ local _isGen = true
 local _nextTimeGen = 0
 local _timeGenDelay = 1
 local _parent
+local _indexGen = 0
 
 function start()
 	for i = 1,#_coinText
@@ -26,18 +27,6 @@ function start()
     --self.transform.localScale = CS.UnityEngine.Vector3(0.3,0.3,0.3)
 end
 
-function CreateSprite(texture, x, y, width, height, pivotX, pivotY)
-    if texture == nil then
-        print("Texture is nil")
-        return nil
-    end
-
-    local rect = CS.UnityEngine.Rect(x, y, width, height)
-    local pivot = CS.UnityEngine.Vector2(pivotX or 0.5, pivotY or 0.5)
-    local sprite = CS.UnityEngine.Sprite.Create(texture, rect, pivot)
-    return sprite
-end
-
 function update()
     if(#_sprites == #_coinText) then
         Generate()
@@ -45,12 +34,12 @@ function update()
         Moving()
     end
 end
-local _indexGen = 0
+
 function Generate()
     if(_isGen == false) then
         return
     end
-    if(CS.UnityEngine.Time.time > _nextTimeGen) then
+    if(Time.time > _nextTimeGen) then
         _indexGen = _indexGen + 1
         _nextTimeGen = CS.UnityEngine.Time.time + _timeGenDelay
         -- object
@@ -79,9 +68,9 @@ end
 
 function Moving()
     for i = 1, #_childs do
-        _childs[i].transform.position =  _childs[i].transform.position + CS.UnityEngine.Vector3(-3 * CS.UnityEngine.Time.deltaTime,0,0)
+        _childs[i].transform.position =  _childs[i].transform.position + Vector3(-3 * Time.deltaTime,0,0)
         if(_childs[i].transform.position.x < -10) then
-            _childs[i].transform.position = CS.UnityEngine.Vector3(10,CS.UnityEngine.Random.Range(-4,4),0)
+            _childs[i].transform.position = Vector3(10, Random.Range(-4,4),0)
             _childs[i].gameObject:SetActive(true)
             _isGen = false
         end
@@ -89,13 +78,13 @@ function Moving()
 end
 
 function SpriteSheetForCoin()
-    if(CS.UnityEngine.Time.time > _nextRender) then
+    if(Time.time > _nextRender) then
         _indexSprite = _indexSprite + 1
         if(_indexSprite > #_sprites) then
             _indexSprite = 1
         end
         _currentSprite = _sprites[_indexSprite]
-        _nextRender = CS.UnityEngine.Time.time + _delayRender
+        _nextRender = Time.time + _delayRender
         for i = 1, #_childs do
             _childs[i].sprite = _currentSprite
         end

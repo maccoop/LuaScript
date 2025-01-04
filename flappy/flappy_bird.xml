@@ -1,4 +1,7 @@
 <xml>
+	<require>
+		<Unity path = "C:\Users\Admin\Project\LuaScript\flappy\define.lua" index = 0/>
+	</require>
 	<main>
 		<flappy path = "C:\Users\Admin\Project\LuaScript\flappy\flappy.lua"/>
 		<coin path = "C:\Users\Admin\Project\LuaScript\flappy\coin.lua" />
