@@ -12,7 +12,6 @@ local _timeFlyEnd = 0
 local _timeFlying = 1/8
 local _g = 1
 local _coin = 0
-local _die = false
 
 function start()
 	self.transform.localScale = CS.UnityEngine.Vector3.one * 2
@@ -41,6 +40,7 @@ function update()
 end
 
 function SpriteSheetForBird()
+	if(GetDie() == true)then return end
 	if(Time.time > _nextRender) then
 		_indexSprite = _indexSprite + 1
 		if(_indexSprite > #_sprites) then
@@ -53,26 +53,30 @@ end
 
 function Drop()
 	if(_isFlying == true) then
-		self.transform.position = self.transform.position + Vector3.up * Time.deltaTime * 5
+		self.transform.position = self.transform.position + Vector3.up * Time.deltaTime * 7
 		if(Time.time > _timeFlyEnd) then
 			_isFlying = false;
 		end
 		_g = 1
 	else
-		if(self.transform.position.y < -5) then
+		if(self.transform.position.y < -4.5) then
 			return
 		end
 		self.transform.position = self.transform.position + Vector3.down * Time.deltaTime * _g
-		self.transform.rotation = CS.UnityEngine.Quaternion.Euler(0, 0, 10 -_g*5) 
-		_g = _g + _g/50 + Time.deltaTime
+		local rotation = 25 -_g*5
+		if(rotation < -90) then
+			rotation = -90
+		end
+		self.transform.rotation = CS.UnityEngine.Quaternion.Euler(0, 0, rotation) 
+		_g = _g + _g/20 + Time.deltaTime
 	end
 end
 
 function Control()
-	if(_die == true)
+	if(GetDie() == true)
 	then
 		if( Input.GetKeyDown(CS.UnityEngine.KeyCode.R)) then
-			_die = false
+			SetDie(false)
 			_coin = 0
 		end
 		return
@@ -85,7 +89,7 @@ end
 function Fly()
 	_isFlying = true
 	_timeFlyEnd = CS.UnityEngine.Time.time + _timeFlying
-	self.transform.rotation = CS.UnityEngine.Quaternion.Euler(0, 0, 15) 
+	self.transform.rotation = CS.UnityEngine.Quaternion.Euler(0, 0, 25) 
 end
 
 function onTriggerEnter2D(trigger)
@@ -103,6 +107,6 @@ function Score()
 end
 
 function Die()
-	_die = true
+	SetDie(true)
 	print("Die with coin: " .. _coin)
 end

@@ -5,7 +5,7 @@ xlua.hotfix("FogTeam.KiemThe.Control.Component.Character",
         CS.TimeCount.Ping()
         coroutine.create(function()
             coroutine.yield(null)
-            self.animation:sReload()
+            self.animation:Reload()
             self:ResumeCurrentAction()
             CS.TimeCount.Pong("ReloadAnimation")
         end)

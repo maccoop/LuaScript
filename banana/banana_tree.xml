@@ -1,5 +1,8 @@
 <xml>
     <main>
-        <Index path = "C:\Users\Admin\Project\LuaScript\banana\Index.lua"/>
+        <Index path = "C:\Users\Admin\Project\LuaScript\banana\coroutineExam.lua"/>
     </main>
+    <require>
+        <cs_coroutine path = "C:\Users\Admin\Project\LuaScript\cs_coroutine.lua" />
+    </require>
 </xml>

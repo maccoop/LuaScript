@@ -68,6 +68,7 @@ end
 
 
 function start()
+    print("login lua start")
     --
     -- Awake
     LoginSuccessAdd()
@@ -124,7 +125,7 @@ function start()
         end)
     end
     InitPrefabs()
-    local co = coroutine.create(loginSuccessOnMainThread)
+    coroutine.create(function() accountInfoManager:ReadData() end)
 end
 
 function loginSuccessOnMainThread()
@@ -136,12 +137,14 @@ function loginSuccessOnMainThread()
 end
 
 function InitPrefabs()
+    print("init prefabs hotfix")
     self.gameObject:GetComponentInChildren(typeof(CS.FogTeam.KiemThe.Utilities.UnityUI.UITabPanel)).enabled = true
     Button_Login.onClick:AddListener(ButtonLogin_Click)
     Button_Register.onClick:AddListener(ButtonRegister_Click)
 end
 
 function ButtonLogin_Click()
+    print("ButtonLogin_Click")
     CS.TimeCount.Ping();
     local account = Input_LoginUserName.text
     local password = Input_LoginPassword.text;

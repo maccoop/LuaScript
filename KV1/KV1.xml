@@ -1,10 +1,21 @@
 <xml>
 	<hotfix>
-		<Super path = "C:\Users\Admin\Project\LuaScript\KV1\hotfix\Super_hotflix.lua"/>
-		<UILogin path = "C:\Users\Admin\Project\LuaScript\KV1\hotfix\UILogin_hotflix.lua"/>
-		<Character path = "C:\Users\Admin\Project\LuaScript\KV1\hotfix\CharacterFix.lua"/>
+		<Super path = "hotfix/Super_hotflix.lua" />
+		<UILogin path = "hotfix/UILogin_hotflix.lua" />
+		<Event path = "hotfix/EventHotFix.lua" />
+		<Event path = "hotfix/PlayzoneHotfix.lua" />
 	</hotfix>
+	<require>
+		<define path = "C:/Users/Admin/Project/LuaScript/define.lua"/>
+		<KV1 path = "KVDefine.lua"/>
+		<Courotine path = "C:/Users/Admin/Project/LuaScript/cs_coroutine.lua"/>
+	</require>
+	<preload>
+		<GiftExchange path = "events/GiftExchangeControl.lua"/>
+		<UIUnionShop path = "events/UIUnionShop.lua"/>
+		<Login path = "login.lua"/>
+	</preload>
 	<service>
-		<user path = "C:\Users\Admin\Project\LuaScript\KV1\services\userservice.lua"/>
+		<user path = "services/userservice.lua"/>
 	</service>
 </xml>

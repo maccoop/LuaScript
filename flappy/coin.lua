@@ -36,6 +36,9 @@ function update()
 end
 
 function Generate()
+    if(GetDie() == true) then
+        return;
+    end
     if(_isGen == false) then
         return
     end
@@ -67,6 +70,9 @@ function Generate()
 end
 
 function Moving()
+    if(GetDie() == true) then
+        return;
+    end
     for i = 1, #_childs do
         _childs[i].transform.position =  _childs[i].transform.position + Vector3(-3 * Time.deltaTime,0,0)
         if(_childs[i].transform.position.x < -10) then
